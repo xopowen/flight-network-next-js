@@ -85,6 +85,9 @@ span{
 	padding-inline:clamp(10px,7.6967592593vw,133px);
 	margin:auto
 }
+.gray{
+	color: gray;
+}
 .lato{
 	font-family:Lato,sans-serif;
 	font-style:normal;
@@ -449,6 +452,7 @@ span{
 	color:#5d5d5d
 }
 .order-card{
+	cursor: pointer;
 	display:grid;
 	grid-template-columns:30% 1fr;
 	grid-template-rows:1fr 1fr;
@@ -477,6 +481,13 @@ span{
 .order-card_active{
 	background:rgba(154,211,242,.64);
 	color:#6b79f8
+}
+.order-card_active   picture,
+.order-card_active   source,
+.order-card_active   img,
+.order-card_active   svg
+{
+	background: #4A65F0;
 }
 .ticket{
 	--paddin-left:68px;
@@ -640,6 +651,12 @@ span{
 	border-radius:0;
 	color:#fff
 }
+.ticket__btn_active{
+
+	transform: scaleY(1.13);
+	outline:5px solid red ;
+}
+
 .img-circle-container{
 	background:#d9d9d9;
 	border:1px solid #7a7979;
@@ -691,6 +708,7 @@ span{
 	gap:15px
 }
 .progress-deal__item_active>.progress-deal__level{
+	transition: 1s;
 	background:var(--bgr-header-footer);
 	color:var(--bgr-header-footer)
 }
@@ -785,6 +803,9 @@ span{
 	max-width:481px;
 	width:100%;
 	height:78px
+}
+.travel-info__submit_error{
+	background: red;
 }
 .travel-info__option-text{
 	margin-top:11px;
@@ -1744,9 +1765,9 @@ a:visited{
 	border-radius:8px
 }
 .btn:hover{
-	-webkit-transform:scale(1.01);
-	-ms-transform:scale(1.01);
-	transform:scale(1.01)
+	-webkit-transform:scale(1.1);
+	-ms-transform:scale(1.1);
+	transform:scale(1.1)
 }
 .btn:active{
 	-webkit-transform:scale(.99);
@@ -2154,4 +2175,43 @@ a:visited{
 	.login-form{
 		height:100%
 	}
+}
+
+@keyframes Scale {
+	0%{
+		transform: scale(1);
+	}
+	30%{
+		transform: scale(0.7);
+	}
+	70%{
+		transform: scale(1.2);
+	}
+	100%{
+		transform: scale(1);
+	}
+}
+.loader{
+	width: 25px;
+	height: 25px;
+	display: flex;
+
+}
+.loader picture,
+.loader source,
+.loader img,
+.loader svg{
+	width: 100%;
+	height: 100%;
+}
+.loader path{
+	transform-origin:center center ;
+	animation-name: Scale;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.loader path:nth-child(2n){
+	animation-delay:.3s ;
 }

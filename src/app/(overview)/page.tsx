@@ -1,5 +1,6 @@
 import CalculateBookFlight from "@/app/ui/forms/calculate-book-flight";
 import Link from "next/link";
+import FormCalculateBookFlight from "@/app/ui/forms/calculate-book-flight";
 
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
                     <h2 className="book-flight__head-calc">
                         Book Cheap Flight
                     </h2>
-                 <CalculateBookFlight/>
+                 <FormCalculateBookFlight/>
                 </div>
             </section>
             <div className="container text-cards">

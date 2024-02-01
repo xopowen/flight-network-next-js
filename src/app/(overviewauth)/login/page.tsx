@@ -7,6 +7,7 @@ import {getCookie} from "../../lib/helpFunction/getCookies";
 import { useFormState } from 'react-dom';
 import {useEffect, useState} from "react";
 
+
 export default function Page(){
     let [firstName,setFirstName] = useState() ;
     let [password,setPassword] = useState() ;
@@ -16,7 +17,7 @@ export default function Page(){
         setFirstName( getCookie('first-name'))
         setPassword (getCookie('password'))
     },[])
-    console.log(dispatch)
+
     return <form className="login-form lato" action={dispatch}>
 
         <div className="login-form__img">

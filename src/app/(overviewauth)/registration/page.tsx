@@ -4,8 +4,7 @@ import kisspng from '../../../../public/img/kisspng-qantas-wikipedia-lo 1.png'
 
 import Image from "next/image";
 import haveRegistrationForm from "@/app/lib/actions/haveRegistrationForm";
-
-
+import {Metadata} from "next";
 
 
 

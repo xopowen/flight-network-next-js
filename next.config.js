@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    // mobx: {
+    //     mobxTrace: true,
+    //     mobxReactStrictMode: true,
+    // },
+}
 
 module.exports = nextConfig
