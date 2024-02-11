@@ -14,13 +14,23 @@ let YOrder = observer(( )=>{
     let {bookTickets}  =  useStores();
     let [fI,setFl] = useState();
     let searchParams = useSearchParams()
-
+    let [totalAmount,setTotalA] = useState(0)
+    let format = useMemo(()=>new Intl.NumberFormat('en',{
+        maximumFractionDigits:2,
+    }),[])
     useEffect(()=>{
         if(bookTickets.flightInfo){
             setFl(toJS(bookTickets.flightInfo))
         }
-
-    },[bookTickets.flightInfo])
+        let sumT = 0
+        if(bookTickets.flightInfo && bookTickets.ticketServiceList){
+            Object.entries(bookTickets.ticketServiceList).map(value => {
+                sumT += value[1].count * ( value[1].price || 0)
+            })
+            sumT += bookTickets.flightInfo.prise
+            setTotalA(sumT)
+        }
+    },[bookTickets.flightInfo,bookTickets.ticketServiceList])
     if (!fI){
         return <></>
     }
@@ -68,7 +78,7 @@ let YOrder = observer(( )=>{
         </div>
         <div className="y-order__footer lato_800 lato text-size_28">
             <p>Test Testtrfe, adult</p>
-            <p className="y-order__left-text">AU$300.45</p>
+            <p className="y-order__left-text">AU${format.format(totalAmount)}</p>
         </div>
     </aside>
 

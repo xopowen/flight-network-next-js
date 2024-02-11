@@ -4,6 +4,7 @@ const nextConfig = {
     //     mobxTrace: true,
     //     mobxReactStrictMode: true,
     // },
+
 }
 
 module.exports = nextConfig

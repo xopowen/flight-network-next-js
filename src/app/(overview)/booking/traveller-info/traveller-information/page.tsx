@@ -5,12 +5,17 @@ import airplane from '../../../../../../public/img/icons/airplane.svg';
 import Image from "next/image";
 import {Metadata} from "next";
 import LevelService from "@/app/(overview)/booking/traveller-info/traveller-information/ui/LevelService";
+import PadiServiceCard from "@/app/(overview)/booking/traveller-info/traveller-information/ui/PadiServiceCard";
+import SendAllFormButton from "@/app/(overview)/booking/traveller-info/ui/SendAllFormButton";
 
 export const metadata: Metadata = {
     title:'traveller-information for booking |'
 }
 export default async function Page({searchParams}){
-
+    let timeOut = await new Promise((resolve => {
+        setTimeout(resolve,2000
+        )
+    }))
 return <>
     <h1 className="lato lato_400 text-size_30 link-to-back">
         <Link href={"/booking/traveller-info/first-section?" + new URLSearchParams(searchParams).toString()}  >Edit Traveler details</Link>
@@ -37,8 +42,8 @@ return <>
             </article>
 
             <div className="extra-service__levels">
-                <LevelService  title={'Standard'} price={56.93} type={'standard'} signature={'Most Popular!'}/>
-                <LevelService  title={'Platinum'} price={56.93} type={'platinum'} signature={'Most Popular!'}/>
+                <LevelService  title={'Standard'} count={1} price={56.93} type={'standard'} signature={'Most Popular!'}/>
+                <LevelService  title={'Platinum'} count={1} price={56.93} type={'platinum'} signature={'Most Popular!'}/>
             </div>
 
         </article>
@@ -62,79 +67,29 @@ return <>
         </article>
 
         <div className="travel-info__list-extra-service">
-            <section className="paid-service-card lato">
-                <Image width="512" height="512" src={airplane} alt=""/>
-                <div className="paid-service-card__main">
-                    <h3 className="paid-service-card__head lato_700 text-size_30">
-                        Emergency Medical & Expenses Cover
-                    </h3>
-                    <p className="paid-service-card__text lato_400 text-size_26">
-                        Provides cover for medical emergencies should you become ill or injured on your trip. This
-                        product is only available to people 72 years old and younger.
-                    </p>
-                </div>
-                <form className="paid-service-card__footer">
-                    <p className="paid-service-card__subtext lato_400 text-size_18">
-                        Total per person
-                    </p>
-                    <p className="lato_700 text-size_26  paid-service-card__price ">AU$ 70.86 </p>
-                    <div className="paid-service-card__choice lato_400 text-size_26">
-                        <div className="custom-radio paid-service-card__custom-radio">
-                            <input id="paid-service-1-choice-no" type="radio" name="choice-no"/>
-                            <label for="paid-service-1-choihtmlForno">No</label>
-                        </div>
-                        <div className="custom-radio paid-service-card__custom-radio">
-                            <input id="paid-service-1-choice-yes" type="radio" name="choice-no"/>
-                            <label for="paid-service-1-choihtmlForyes">Yes</label>
-                        </div>
-                    </div>
-                </form>
-            </section>
-            <section className="paid-service-card lato">
-                <Image width="512" height="512" src={airplane} alt=""/>
-                <div className="paid-service-card__main">
-                    <h3 className="paid-service-card__head lato_700 text-size_30">
-                        Airline Collapse Cover
-                    </h3>
-                    <p className="paid-service-card__text lato_400 text-size_26">
-                        Ensure you and other travellers are protected if, due to COVID-19 or any other reason, your
-                        airline declares bankruptcy and cancels your flight.
-                    </p>
-                    <p className="paid-service-card__text lato_400 text-size_26">
-                        We’ll refund your prepaid airfares if you haven’t yet departed, or cover your return airfares
-                        home if your trip has already begun.
-                    </p>
-                </div>
-                <form className="paid-service-card__footer">
-                    <p className="paid-service-card__subtext lato_400 text-size_18">
-                        Total per person
-                    </p>
-                    <p className="lato_700 text-size_26  paid-service-card__price ">AU$ 18.86</p>
-                    <div className="paid-service-card__choice lato_400 text-size_26">
-                        <div className="custom-radio paid-service-card__custom-radio">
-                            <input id="paid-service-2-choice-no" type="radio" name="choice-no"/>
-                                <label for="paid-service-2-choice-no">No</label>
-                        </div>
-                        <div className="custom-radio paid-service-card__custom-radio">
-                            <input id="paid-service-2-choice-yes" type="radio" name="choice-no"/>
-                                <label for="paid-service-2-choice-yes">Yes</label>
-                        </div>
-                    </div>
-                </form>
-            </section>
-        </div>
-
-        <div className="travel-info__submit-for-forms lato">
-            <p className="lato_400 text-size_28 travel-info__text-center">
-                By booking you confirm that the names on the booking match those on the passports
-                of those travelling.
-            </p>
-
-            <button aria-label="submit" className="btn btn_submit travel-info__submit">
-                Continue
-            </button>
+            <PadiServiceCard uid={5}
+                             title={'Emergency Medical & Expenses Cover'}
+                             price={70}
+                             count={1}
+                             discription={['Provides cover for medical emergencies should you become ill or injured on your trip. This\n' +
+                             'product is only available to people 72 years old and younger.']}
+            />
+            <PadiServiceCard
+                uid={6}
+                title={'Airline Collapse Cover'}
+                price={18}
+                count={1}
+                discription={[
+                    'Ensure you and other travellers are protected if, due to COVID-19 or any other reason, your\n' +
+                    'airline declares bankruptcy and cancels your flight.',
+                    'We’ll refund your prepaid airfares if you haven’t yet departed, or cover your return airfares\n' +
+                    'home if your trip has already begun.'
+                ]}
+            />
 
         </div>
+
+        <SendAllFormButton/>
     </div>
 </>
 }

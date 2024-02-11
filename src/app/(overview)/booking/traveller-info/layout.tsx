@@ -3,7 +3,7 @@ import ProgressDeal from "@/app/(overview)/booking/traveller-info/ui/ProgressDea
 import YOrder from "@/app/(overview)/booking/traveller-info/ui/YOrder";
 
 
-export default function bookingLayout({  children, }:
+export default async function bookingLayout({  children, }:
 {  children: React.ReactNode }) {
 
     return <>

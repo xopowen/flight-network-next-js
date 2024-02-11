@@ -11,15 +11,16 @@ let ProgressDeal = observer(()=>{
      let [step,setStep] = useState(1)
     let [progress,setProgress] = useState( 0)
     let dp = 1
+
     useEffect(()=>{
         let interval;
         if(dp!==0){
             interval = setInterval(()=>{
                 setProgress( progress=> {
-                    if(progress === bookTickets.registrationStage*20){
+                    if(progress === bookTickets.registrationStage*30){
                         clearInterval(interval)
                     }
-                    if(progress>bookTickets.registrationStage*20){
+                    if(progress>bookTickets.registrationStage*30){
                         return progress - dp
                     }
                     return progress + dp
@@ -36,7 +37,7 @@ let ProgressDeal = observer(()=>{
                 setStep(Steps.two)
                 bookTickets.registrationStage = Steps.two
                 break;
-            case "":
+            case "/booking/traveller-info/choose-payment-method":
                 setStep(Steps.tree)
                 bookTickets.registrationStage = Steps.tree
                 break;

@@ -3,7 +3,7 @@
 	font-style:normal;
 	font-weight:700;
 	font-display:swap;
-	src:local(''),url(../fonts/Jaldi-Bold.eot),url(../fonts/Jaldi-Bold.ttf) format("truetype"), url(../fonts/Jaldi-Bold.eot) format("embedded-opentype"),url(../fonts/Jaldi-Bold.woff2) format("woff2"),url(../fonts/Jaldi-Bold.woff) format("woff")
+	src:local(''), url(../fonts/Jaldi-Bold.ttf) format("truetype"), url(../fonts/Jaldi-Bold.eot) format("embedded-opentype"),url(../fonts/Jaldi-Bold.woff2) format("woff2"),url(../fonts/Jaldi-Bold.woff) format("woff")
 }
 :root{
 	--colol-header-text:#ffff;

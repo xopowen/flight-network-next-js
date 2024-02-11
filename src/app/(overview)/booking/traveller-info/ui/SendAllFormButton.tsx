@@ -16,7 +16,6 @@ export default function SendAllFormButton(){
         for (var i=0; i<forms.length; i++){
             forms[i].requestSubmit();
         }
-        bookTickets.registrationStage = Steps.one
        if( bookTickets.registrationStage === Steps.one){
 
            if(bookTickets.contactInfo.length === 0){
@@ -29,6 +28,9 @@ export default function SendAllFormButton(){
                return
            }
            router.push(`${window.location.protocol}/booking/traveller-info/traveller-information?${searchParams.toString()}`)
+       }
+       if(bookTickets.registrationStage === Steps.two){
+           router.push(`${window.location.protocol}/booking/traveller-info/choose-payment-method?${searchParams.toString()}`)
        }
 
     }

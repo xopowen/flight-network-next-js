@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 }
 export default async function Page({searchParams}:{searchParams:Object}){
     let countPassengers = +searchParams?.['passengers'];
-
+    let timeOut = await new Promise((resolve => {
+        setTimeout(resolve,2000
+        )
+    }))
     return <>
         <ContactInfoForAllPassengers/>
         <>

@@ -14,8 +14,11 @@ export const metadata: Metadata = {
     title:'Flights of '
 }
 
-export default   function Page({searchParams}){
-
+export default async  function Page({searchParams}){
+    let timeOut = await new Promise((resolve => {
+        setTimeout(resolve,2000
+        )
+    }))
     return(<>
     <section className="booking container">
 

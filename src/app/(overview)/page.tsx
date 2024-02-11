@@ -3,7 +3,8 @@ import Link from "next/link";
 import FormCalculateBookFlight from "@/app/ui/forms/calculate-book-flight";
 
 
-export default function Home() {
+export default async function Home() {
+
   return (<>
         <main>
             <section className="book-flight">
