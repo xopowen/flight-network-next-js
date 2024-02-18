@@ -9,8 +9,8 @@ import {useEffect, useState} from "react";
 
 
 export default function Page(){
-    let [firstName,setFirstName] = useState() ;
-    let [password,setPassword] = useState() ;
+    let [firstName,setFirstName] = useState<string|undefined>() ;
+    let [password,setPassword] = useState<string|undefined>() ;
     const initialState = { message: null, errors: {} };
     let [state,dispatch] = useFormState(haveLoginForm,initialState)
     useEffect(()=>{
@@ -23,7 +23,9 @@ export default function Page(){
         <div className="login-form__img">
             <Image width="940" height="740" src={kisspng} className="lato lato_700 text-size_35" alt="Flight Network"/>
         </div>
-        {state?.message && <p style={{color:'red'}}>{state.message}</p>}
+
+        { // @ts-ignore:Type error.
+            state?.message && <p style={{color:'red'}}>{state.message}</p>}
         <div className="login-form__main">
             <label className="login-form__field lato_400 text-size_16">
                 User name

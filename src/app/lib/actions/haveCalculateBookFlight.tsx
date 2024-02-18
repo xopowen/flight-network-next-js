@@ -46,10 +46,12 @@ const validate = FormSchema.safeParse({
     }
     let newUrlParams = new URLSearchParams()
 
-    for (let field of Object.entries(validate.data)){
+    for (let field  of Object.entries(validate.data)){
         if( field[0] === 'date-depart' || field[0]==='date-return'){
+            // @ts-ignore:Type error.
             field[1] = field[1].toISOString().split('T')[0]
         }
+        // @ts-ignore:Type error.
         newUrlParams.append(field[0],field[1])
     }
 

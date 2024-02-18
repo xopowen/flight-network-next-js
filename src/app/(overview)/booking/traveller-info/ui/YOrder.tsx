@@ -5,14 +5,14 @@ import shoppingBag from "../../../../../../public/img/icons/shopping-bag.svg";
 import {useSearchParams} from "next/navigation";
 import {observer, Observer} from "mobx-react-lite";
 import {useStores} from "@/app/hooks/useStores";
-import {FlightInfo} from "@/app/stateManagers/BookTickets";
+import {FlightInfo, ServiceType} from "@/app/stateManagers/BookTickets";
 import {useEffect, useMemo, useState} from "react";
 import {toJS} from "mobx";
 import customFormatTime from "@/app/helpFunctions/customFormatTime";
 //TODO сделать скелет
 let YOrder = observer(( )=>{
     let {bookTickets}  =  useStores();
-    let [fI,setFl] = useState();
+    let [fI,setFl] = useState<FlightInfo>();
     let searchParams = useSearchParams()
     let [totalAmount,setTotalA] = useState(0)
     let format = useMemo(()=>new Intl.NumberFormat('en',{
@@ -24,10 +24,10 @@ let YOrder = observer(( )=>{
         }
         let sumT = 0
         if(bookTickets.flightInfo && bookTickets.ticketServiceList){
-            Object.entries(bookTickets.ticketServiceList).map(value => {
+            Object.entries(bookTickets.ticketServiceList).map((value:any) => {
                 sumT += value[1].count * ( value[1].price || 0)
             })
-            sumT += bookTickets.flightInfo.prise
+            sumT += bookTickets.flightInfo.price || 0
             setTotalA(sumT)
         }
     },[bookTickets.flightInfo,bookTickets.ticketServiceList])
@@ -63,7 +63,7 @@ let YOrder = observer(( )=>{
                 <p className="lato lato_800 text-size_28">Bags</p>
                 {
                     Object.entries(bookTickets.ticketServiceList)
-                        .map(value => {
+                        .map((value:any) => {
                             return  <div key={value[1].uid} className="y-order__pay-service">
                                 <Image width="50" height="50" src={shoppingBag} alt={'bag'}/>
                                 <p className="lato lato_800 text-size_28">{value[1].title} </p>

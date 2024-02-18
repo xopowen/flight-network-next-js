@@ -4,16 +4,17 @@ import {useEffect, useState} from "react";
 import {useStores} from "@/app/hooks/useStores";
 import {Steps} from "@/app/stateManagers/BookTickets";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {startInfoFindFlight} from "@/app/ui/forms/calculate-book-flight";
 
 export default function SendAllFormButton(){
     let searchParams = useSearchParams()
     let router = useRouter()
-    let [forms,setForms] = useState()
+    let [forms,setForms] = useState<Array<HTMLFormElement>>([])
     let {bookTickets}= useStores()
     let [error,setError] = useState(false)
     function haveSend() {
         setError(false)
-        for (var i=0; i<forms.length; i++){
+        for (let i=0; i< forms.length; i++){
             forms[i].requestSubmit();
         }
        if( bookTickets.registrationStage === Steps.one){
@@ -22,7 +23,7 @@ export default function SendAllFormButton(){
                setError(true)
                return
            }
-
+           // @ts-ignore: Object is possibly 'null'.
            if(bookTickets.listPassengers.length < searchParams.get('passengers') ){
                setError(true)
                return
@@ -35,8 +36,7 @@ export default function SendAllFormButton(){
 
     }
     useEffect(()=>{
-        let formsAll = document.getElementsByTagName("FORM")
-
+        let formsAll = [...document.forms ]
         setForms(formsAll)
     },[])
 

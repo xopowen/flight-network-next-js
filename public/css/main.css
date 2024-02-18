@@ -176,7 +176,9 @@ span{
 .header__nav{
 	font:normal 400 clamp(1rem,1.4467592593vw,25px)/normal Jaldi,sans-serif
 }
-.header__nav ul{
+.header__nav ul,
+.header__nav menu
+{
 	display:-webkit-box;
 	display:-ms-flexbox;
 	display:flex;

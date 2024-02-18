@@ -9,13 +9,13 @@ export default async function haveLoginForm(prevState: {}, formData: FormData){
                     }
     let firstName = cookies().get('first-name')
     let password = cookies().get('password')
-    let errors = {}
+    let errors:any = {}
 
-    if(formInfo.firstName !== firstName.value){
+    if(!(firstName) || formInfo.firstName !== firstName.value){
         errors['message'] = 'Error in input of info.'
         return  errors
     }
-    if(password.value !== formInfo.password){
+    if(!(password) || password.value !== formInfo.password){
         errors['message'] ='Error in input of info.'
         return errors
     }

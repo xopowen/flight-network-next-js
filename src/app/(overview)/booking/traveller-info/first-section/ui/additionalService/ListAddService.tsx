@@ -1,8 +1,8 @@
 import screenshot from '../../../../../../../../public/img/Screenshot 2022-12-16 160342.jpg'
 import shopping from '../../../../../../../../public/img/icons/shopping-bag.svg'
 import Image from "next/image";
-import ButtonAdd from "@/app/(overview)/booking/traveller-info/first-section/ui/additionalService/buttonAdd";
-import RadioAdd from "@/app/(overview)/booking/traveller-info/first-section/ui/additionalService/RadioAdd";
+import ButtonAdd from "./ButtonAdd";
+import RadioAdd from "./RadioAdd";
 
 export default async function ListAddService({countPassengers}:{countPassengers:number}){
 

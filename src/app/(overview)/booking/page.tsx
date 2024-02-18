@@ -8,13 +8,16 @@ import SortElement from "@/app/(overview)/booking/ui/SortElement";
 import Flights from "@/app/(overview)/booking/ui/Flights";
 import {Suspense} from "react";
 import FlightsSkeleton from "@/app/(overview)/booking/ui/skeleton/FlightsSkeleton";
+import {startInfoFindFlight} from "@/app/ui/forms/calculate-book-flight";
 
 
 export const metadata: Metadata = {
     title:'Flights of '
 }
 
-export default async  function Page({searchParams}){
+export default async  function Page({searchParams}:{
+    searchParams?: startInfoFindFlight;
+}){
     let timeOut = await new Promise((resolve => {
         setTimeout(resolve,2000
         )

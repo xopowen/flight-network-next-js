@@ -3,6 +3,7 @@ import {useStores} from "@/app/hooks/useStores";
 import {useEffect, useMemo, useState} from "react";
 import {observer} from "mobx-react-lite";
 import {toJS} from "mobx";
+import {LevelServiceType, ServiceType} from "@/app/stateManagers/BookTickets";
 
 
 const TotalAmount = observer(
@@ -16,10 +17,10 @@ const TotalAmount = observer(
         useEffect(()=>{
             let sumT = 0
             if(bookTickets.flightInfo && bookTickets.ticketServiceList){
-                Object.entries(bookTickets.ticketServiceList).map(value => {
+                Object.entries(bookTickets.ticketServiceList).map((value:any ) => {
                     sumT += value[1].count * ( value[1].price || 0)
                 })
-                sumT += bookTickets.flightInfo.prise
+                sumT += bookTickets.flightInfo.price
                 setTotalA(sumT)
             }
 

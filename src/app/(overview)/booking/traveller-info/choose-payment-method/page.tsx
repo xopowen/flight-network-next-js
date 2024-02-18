@@ -8,7 +8,7 @@ import RadioChooseMethod from "@/app/(overview)/booking/traveller-info/choose-pa
 export const metadata: Metadata = {
     title:'Choose payment method|'
 }
-export default async function Page({searchParams}){
+export default async function Page(){
     let active : 'card'|'pypy' = 'card'
     let timeOut = await new Promise((resolve => {
         setTimeout(resolve,2000

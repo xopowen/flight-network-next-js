@@ -5,6 +5,7 @@ import {observer} from "mobx-react-lite";
 import {usePathname, useSearchParams} from "next/navigation";
 import {Steps} from "@/app/stateManagers/BookTickets";
 
+
 let ProgressDeal = observer(()=>{
     let pathName = usePathname()
     let {bookTickets } = useStores()
@@ -13,7 +14,7 @@ let ProgressDeal = observer(()=>{
     let dp = 1
 
     useEffect(()=>{
-        let interval;
+        let interval: NodeJS.Timeout;
         if(dp!==0){
             interval = setInterval(()=>{
                 setProgress( progress=> {

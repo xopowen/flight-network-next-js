@@ -2,7 +2,7 @@ import paypal from '../../../../../../../public/img/paypal 1.jpg'
 import Image from "next/image";
 
 
-export default function MethodPayPal ({isActive,haveChange}:{isActive:boolean}){
+export default function MethodPayPal ({isActive,haveChange}:{isActive:boolean,haveChange:Function}){
 
     return  <article className="payment-method payment-method_pypy lato gray-border">
         <div className="custom-radio payment-method__custom-radio">

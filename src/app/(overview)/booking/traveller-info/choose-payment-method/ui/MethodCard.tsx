@@ -1,7 +1,9 @@
 
 import cards from '../../../../../../../public/img/cards.jpg'
 import Image from 'next/image'
-export default function MethodCard ({isActive,haveChange}:{isActive:boolean}){
+
+
+export default function MethodCard ({isActive,haveChange}:{isActive:boolean,haveChange:Function}){
 
     return  <article className="payment-method payment-method_card lato gray-border">
         <div className="custom-radio payment-method__custom-radio">

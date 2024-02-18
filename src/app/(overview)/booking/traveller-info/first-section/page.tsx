@@ -3,12 +3,16 @@ import FormPassenger from "@/app/(overview)/booking/traveller-info/first-section
 import ListAddService from "@/app/(overview)/booking/traveller-info/first-section/ui/additionalService/ListAddService";
 import SendAllFormButton from "@/app/(overview)/booking/traveller-info/ui/SendAllFormButton";
 import {Metadata} from "next";
+import {startInfoFindFlight} from "@/app/ui/forms/calculate-book-flight";
 
 export const metadata: Metadata = {
     title:'First section for booking|'
 }
-export default async function Page({searchParams}:{searchParams:Object}){
-    let countPassengers = +searchParams?.['passengers'];
+export default async function Page({searchParams}:{
+    searchParams: startInfoFindFlight;
+}){
+    let countPassengers = searchParams['passengers'];
+
     let timeOut = await new Promise((resolve => {
         setTimeout(resolve,2000
         )

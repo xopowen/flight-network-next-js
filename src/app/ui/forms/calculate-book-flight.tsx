@@ -1,18 +1,30 @@
 'use client';
 import Image from 'next/image'
 import arrives from '../../../../public/img/icons/arrives.svg'
-import {usePathname, useRouter, useSearchParams,redirect} from "next/navigation";
 import {useFormState} from "react-dom";
 import {haveCalculateBookFlight} from "@/app/lib/actions/haveCalculateBookFlight";
 import {handleKeyDown} from "@/app/helpFunctions/formSendToEntry";
 
+
+export type startInfoFindFlight = {
+    direction:string,
+    'city-from':string,
+    'city-to':string,
+    'date-depart':string,
+    'date-return':string,
+    passengers:number
+}
+
 //TODO need write tests
 export default function FormCalculateBookFlight(){
     const initialState = { message: null, errors: {} };
+    // @ts-ignore: Type error.
     let [state,dispatch] = useFormState(haveCalculateBookFlight,initialState)
 
     return <form className="calculate-book-flight" aria-label={'form Book Cheap Flight'} action={dispatch}>
-        {state?.message && state.message.length > 0 && <p aria-errormessage={state.message} className={'lato lato_400'} style={{color:'red'}}>{state.message}</p>}
+
+        {    // @ts-ignore: Type error.
+            state?.message && state.message.length > 0 && <p aria-errormessage={state.message} className={'lato lato_400'} style={{color:'red'}}>{state.message}</p>}
         {state?.errors &&  <>{Object.entries(state.errors).map(field=>field[1].map((err,index)=>{
                 return <p key={ index} aria-errormessage={err} className={'lato lato_400'} style={{color:'red'}}>{err}</p>
             }))}

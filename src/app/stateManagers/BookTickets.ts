@@ -4,7 +4,7 @@ import {z} from 'zod';
 export type FlightInfo = {
     id: number,
     departure: Date,
-    prise: number,
+    price: number,
     timeUp: Date  ,
     timeDown: Date ,
     toCity: string,
@@ -14,7 +14,7 @@ export type FlightInfo = {
 export const schemeForFlightInfo = z.object({
     id: z.coerce.number(),
     departure: z.coerce.date(),
-    prise: z.coerce.number(),
+    price: z.coerce.number(),
     timeUp: z.coerce.date()  ,
     timeDown: z.coerce.date() ,
     toCity: z.coerce.string(),
@@ -57,13 +57,13 @@ export type LevelServiceType = ServiceType & {
  * @description информация пассажиров
  */
 interface PassengersInfo {
-    _listPassengers: Array<PassengerInfo>,
 
-    addPassengerInfo(passenger: PassengerInfo): void;
 
-    _includesPassenger(order: number): boolean;
+      addPassengerInfo(passenger: PassengerInfo): void;
 
-    changePassengerInfo(order: number, passenger: PassengerInfo): void;
+      _includesPassenger(order: number): boolean;
+
+      changePassengerInfo(order: number, passenger: PassengerInfo): void;
 }
 
 export class BookTickets implements PassengersInfo, objectToJSON {
@@ -76,7 +76,7 @@ export class BookTickets implements PassengersInfo, objectToJSON {
     private _registrationStage: Steps = Steps.one
     private _contactInfo: Array<Array<any>> = [];
     private _listPassengers: Array<PassengerInfo> = [];
-    private _ticketServiceList  = {}
+    private _ticketsService  = {}
 
 
 
@@ -127,31 +127,39 @@ export class BookTickets implements PassengersInfo, objectToJSON {
         return this._flightInfo?.id === value.id
     }
 
-    get ticketServiceList(): {} {
-        return this._ticketServiceList;
+    get ticketServiceList():any{
+        return this._ticketsService;
     }
 
     getService(uid:number){
-        if( uid in  toJS(this._ticketServiceList)){
-            return this._ticketServiceList[uid];
+        // @ts-ignore:Type error.
+        if(this.isInfService(uid)){
+            // @ts-ignore:Type error.
+            return this._ticketsService[uid];
         }
         return
     }
-    addService(service:ServiceType|LevelServiceType) {
+    addService(service:ServiceType|LevelServiceType):void {
         if(!this.isInfService(service.uid)){
             runInAction(() => {
-                this._ticketServiceList[service.uid]=service
+                // @ts-ignore:Type error.
+                this._ticketsService[service.uid]=service
             })
         }
     }
 
-    delService(uid:number) {
+    delService(uid:number) :void{
         runInAction(() => {
-           delete this._ticketServiceList[uid]
+            // @ts-ignore:Type error.
+           delete this._ticketsService[uid]
         })
     }
-    isInfService(uid:number) {
-        return uid in  toJS(this._ticketServiceList)
+
+    isInfService(uid: number) {
+        if(this._ticketsService){
+            return uid in  toJS(this._ticketsService)
+        }
+       return false
     }
 
 
@@ -202,7 +210,7 @@ export class BookTickets implements PassengersInfo, objectToJSON {
                     this[strElement[0]] =schemeForFlightInfo.parse(strElement[1])
                     continue;
                 }
-
+                // @ts-ignore:Type error.
                 this[strElement[0]] = strElement[1]
             }
         })

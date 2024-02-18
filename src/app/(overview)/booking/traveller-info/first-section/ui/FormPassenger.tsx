@@ -4,7 +4,7 @@ import { schemePassengerInfo} from "@/app/stateManagers/BookTickets";
 import {observer} from "mobx-react-lite";
 import {handleKeyDown} from "@/app/helpFunctions/formSendToEntry";
 import {useState} from "react";
-import {toJS} from "mobx";
+import {ChangeEvent} from "react/ts5.0";
 
 let FormPassenger = observer( ({order}:{order:number})=>{
     let {bookTickets}  =  useStores();
@@ -21,17 +21,18 @@ let FormPassenger = observer( ({order}:{order:number})=>{
             'sur-name':formDate.get('sur-name')
         })
         if(schemeTest.success){
-            console.log('success',schemeTest.data)
             bookTickets.addPassengerInfo(schemeTest.data)
-            console.log(toJS(bookTickets._listPassengers))
         }else{
             setErrors(schemeTest.error)
         }
 
     }
 
-    function haveRadio(e){
-        setChecked(e.currentTarget.value)
+    function haveRadio(e: any){
+
+            setChecked(e.target.value)
+
+
     }
 
 

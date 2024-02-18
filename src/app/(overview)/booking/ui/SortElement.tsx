@@ -6,6 +6,7 @@ import dollar from "../../../../../public/img/icons/dollar 1.svg";
 import star from "../../../../../public/img/icons/star 1.svg";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import { useState} from "react";
+import {startInfoFindFlight} from "@/app/ui/forms/calculate-book-flight";
 
 
 
@@ -22,7 +23,7 @@ export enum EnumFlightSortParams {
  */
 export  default   function SortElement( ){
     let searchParams = useSearchParams()
-    let [sortedParam,setSortedParam] = useState(searchParams?.sorted)
+    let [sortedParam,setSortedParam] = useState<string|null> (searchParams.get('sorted'))
     const pathname = usePathname();
     const { replace } = useRouter();
 
@@ -33,7 +34,7 @@ export  default   function SortElement( ){
         }
         if(!param){
             urlParams.delete('sorted')
-            setSortedParam(undefined)
+            setSortedParam(null)
         }else{
             urlParams.set('sorted',param)
             setSortedParam(param)

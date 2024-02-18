@@ -1,17 +1,19 @@
 import Link from "next/link";
 import services from '../../../../../../public/img/services 1.jpg';
 import screenshot from '../../../../../../public/img/icons/Screenshot 2022-12-16 160342 1.jpg'
-import airplane from '../../../../../../public/img/icons/airplane.svg';
 import Image from "next/image";
 import {Metadata} from "next";
 import LevelService from "@/app/(overview)/booking/traveller-info/traveller-information/ui/LevelService";
 import PadiServiceCard from "@/app/(overview)/booking/traveller-info/traveller-information/ui/PadiServiceCard";
 import SendAllFormButton from "@/app/(overview)/booking/traveller-info/ui/SendAllFormButton";
 
+
 export const metadata: Metadata = {
     title:'traveller-information for booking |'
 }
-export default async function Page({searchParams}){
+export default async function Page({searchParams}:{
+    searchParams?: URLSearchParams;
+}){
     let timeOut = await new Promise((resolve => {
         setTimeout(resolve,2000
         )

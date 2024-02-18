@@ -6,15 +6,19 @@ import {useEffect, useState} from "react";
 
 
 
-let LevelService = observer(({title,type,signature,price}:LevelServiceType)=>{
+
+let LevelService = observer(({title,type,signature,price}:Omit<LevelServiceType,'uid'>)=>{
     let {bookTickets} = useStores()
     let [isInListService,setIn] = useState(false) 
     
     useEffect(()=>{
-        setIn(bookTickets.getService(4)?.type === type)
+        if(bookTickets.getService(4)){
+            setIn(bookTickets.getService(4)?.type === type)
+        }
+
     } ,[bookTickets.getService(4)?.type])
     
-    function haveSetLevelService(e){
+    function haveSetLevelService(){
         if(isInListService){
             bookTickets.delService(4)
             return

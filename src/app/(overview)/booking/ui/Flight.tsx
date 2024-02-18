@@ -12,8 +12,8 @@ export  let Flight = observer((ticketInfo:FlightInfo)=>{
     let reuters = useRouter()
     let path = usePathname()
     let {bookTickets}  =  useStores();
-    let {departure,prise,timeUp,timeDown,toCity,fromCity} = ticketInfo
-    let timeFly:number = useMemo(()=>timeDown-timeUp  ,[timeDown, timeUp])
+    let {departure,price,timeUp,timeDown,toCity,fromCity} = ticketInfo
+    let timeFly:number = useMemo(()=>timeDown.getTime()-timeUp.getTime()  ,[timeDown, timeUp])
     let  action = bookTickets.isFlightInfo(ticketInfo)
     // TODO переадрисация на другие страници
     function setBookToTickets(){
@@ -23,7 +23,7 @@ export  let Flight = observer((ticketInfo:FlightInfo)=>{
     /**
      * @description переход на traveller-info
      */
-    function haveClick(e){
+    function haveClick(){
         setBookToTickets()
         let newSearchParams = new URLSearchParams(searchParams)
         reuters.push(path+'/traveller-info/first-section?'+newSearchParams)
@@ -46,7 +46,7 @@ export  let Flight = observer((ticketInfo:FlightInfo)=>{
                     }`}</p>
                 <div className="ticket__main">
                     <div className="ticket__price">
-                        <p className="lato text-size_30 lato_800">AU $ {prise}</p>
+                        <p className="lato text-size_30 lato_800">AU $ {price}</p>
                         <p className="lato lato_700 text-size_22">Price per adult</p>
                     </div>
                     <div className="ticket__time-and-city">
